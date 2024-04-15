@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #007bff;
+}
+
+#question {
+    margin-bottom: 20px;
+}
+
+.choice {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.choice:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#animation {
+    margin-top: 20px;
+}
+
+/* Add this CSS to the existing styles.css file */
+
+/* Add this CSS to the existing styles.css file */
+
+#road {
+    width: 80%;
+    height: 50px;
+    background-color: #c7c7c7; /* Gray road */
+    position: relative;
+    margin: 30px auto;
+}
+
+#car {
+    width: 50px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top: -10px; /* Adjust to align with the road */
+    /* animation: drive 5s linear forwards; Remove or comment out this line */
+}
+
+
+@keyframes drive {
+    to {
+        left: 100%; /* Move the car to the end of the road */
+    }
+}
+
+
+#path {
+    width: calc(100% - 100px);
+    height: 5px;
+    background-color: #000000; /* Black path */
+    position: absolute;
+    left: 60px; /* Initial position */
+    top: 115px; /* Adjust as needed */
+}
+
+
