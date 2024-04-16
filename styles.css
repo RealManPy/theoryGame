@@ -18,6 +18,20 @@ h1 {
     color: #007bff;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    color: white;
+    background-color: #006aee;
+    padding: 10px;
+    width: 100%;
+	margin-left: -2vh;
+}
+
+#footer {
+    text-align: center;
+}
+
 #question {
     margin-bottom: 20px;
 }
