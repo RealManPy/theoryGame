@@ -1,3 +1,4 @@
+/* styles.css */
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
@@ -99,4 +100,36 @@ footer {
     top: 115px; /* Adjust as needed */
 }
 
+.controls {
+    margin: 20px auto; /* Adjust margin for better spacing */
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+}
+
+.controls button {
+    padding: 10px 20px; /* Add padding for better touch experience */
+    margin: 0 10px; /* Add margin between buttons */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust font size */
+    color: #fff;
+}
+
+.controls #backButton {
+    background-color: #007bff; /* Blue color for back button */
+}
+
+.controls #sendButton {
+    background-color: #28a745; /* Green color for send button */
+}
+
+.controls button:hover {
+    opacity: 0.8; /* Reduce opacity on hover for visual feedback */
+}
+
+.controls button:disabled {
+    opacity: 0.5; /* Reduce opacity when button is disabled */
+    cursor: not-allowed; /* Change cursor when button is disabled */
+}
 

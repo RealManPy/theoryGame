@@ -1,3 +1,4 @@
+//script.js
 const questions = [
     { 
         question: '?מהי דרגת הרישיון הדרושה לנהיגה בכלי רכב מנועי שמשקלו הכולל עד 3,500 ק"ג',
@@ -75,8 +76,9 @@ const progress = document.getElementById("progressBar");
 progress.setAttribute("max", questions.length + "");
 
 
+let selectedChoice = null; // Declare selectedChoice variable outside displayQuestion function
+
 function displayQuestion() {
-	
     const currentQuestion = questions[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
     choicesElement.innerHTML = ""; // Clear previous choices
@@ -86,47 +88,58 @@ function displayQuestion() {
         choiceButton.textContent = choice;
         choiceButton.classList.add("choice");
         choiceButton.addEventListener("click", () => {
-            checkAnswer(choice);
+            // Remove background color from all choice buttons
+            document.querySelectorAll(".choice").forEach(btn => {
+                btn.style.backgroundColor = "";
+            });
+            // Set background color for the selected choice
+            choiceButton.style.backgroundColor = "#0056b3"; // Dark blue color
+            // Store the selected choice
+            selectedChoice = choice;
         });
         choicesElement.appendChild(choiceButton);
     });
-	if (currentQuestion.img){
-		const imgElement = document.createElement("img");
-		imgElement.src = currentQuestion.img;
-		imgElement.style.height = "300px";
-		choicesElement.appendChild(imgElement);
-	}
-}
 
-function checkAnswer(selectedChoice) {
-    const correctAnswer = questions[currentQuestionIndex].answer;
-    if (selectedChoice === correctAnswer) {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-            displayQuestion();
-        }
-        // Remove the error message if it exists
-        const errorMessage = resultElement.querySelector("h1");
-        if (errorMessage) {
-            errorMessage.remove();
-        }
-    } else {
-        // Check if error message already exists
-        let errorMessage = resultElement.querySelector("h1");
-        if (!errorMessage) {
-            errorMessage = document.createElement("h1");
-            errorMessage.style.color = "red";
-            errorMessage.textContent = "טעות. נסו שוב";
-            resultElement.appendChild(errorMessage); // Append the message to the resultElement
-        }
+    // Display the image if it exists
+    if (currentQuestion.img) {
+        const imgElement = document.createElement("img");
+        imgElement.src = currentQuestion.img;
+        imgElement.style.height = "300px";
+        choicesElement.appendChild(imgElement);
     }
-    moveCar();
-    progress.setAttribute("value", currentQuestionIndex + "");
 }
 
 
 
 
+function checkAnswer() {
+    if (selectedChoice) {
+        const selectedAnswer = selectedChoice; // No need to access .textContent
+        const correctAnswer = questions[currentQuestionIndex].answer;
+        if (selectedAnswer === correctAnswer) {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            }
+            // Remove the error message if it exists
+            const errorMessage = resultElement.querySelector("h1");
+            if (errorMessage) {
+                errorMessage.remove();
+            }
+        } else {
+            // Display error message
+            let errorMessage = resultElement.querySelector("h1");
+            if (!errorMessage) {
+                errorMessage = document.createElement("h1");
+                errorMessage.style.color = "red";
+                errorMessage.textContent = "טעות. נסו שוב";
+                resultElement.appendChild(errorMessage); // Append the message to the resultElement
+            }
+        }
+        moveCar();
+        progress.setAttribute("value", currentQuestionIndex + "");
+    }
+}
 
 
 // Display the first question when the page loads
@@ -145,4 +158,26 @@ function moveCar() {
     carElement.style.animationDuration = animationDuration; // Set animation duration first
     carElement.style.left = newPosition + "px";
 }
+
+// Get the back button element
+const backButton = document.getElementById("backButton");
+
+// Add event listener to the back button
+backButton.addEventListener("click", () => {
+    // Move to the previous question if it's not the first question
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion();
+        moveCar();
+        progress.setAttribute("value", currentQuestionIndex + "");
+    }
+});
+
+const sendButton = document.getElementById("sendButton");
+
+sendButton.addEventListener("click", () => {
+
+    checkAnswer(); // Call the checkAnswer function when the send button is clicked
+});
+
 
