@@ -17,6 +17,11 @@ body {
 
 h1 {
     color: #007bff;
+	margin-top: 0px;
+}
+#progressNum {
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 footer {

@@ -73,8 +73,11 @@ const resultElement = document.getElementById("result");
 const carElement = document.getElementById("car");
 
 const progress = document.getElementById("progressBar");
-progress.setAttribute("max", questions.length + "");
+const progressNum = document.getElementById("progressNum");
 
+progress.setAttribute("max", questions.length + "");
+progress.setAttribute("value", "1");
+progressNum.innerText = "1/" + questions.length;
 
 let selectedChoice = null; // Declare selectedChoice variable outside displayQuestion function
 
@@ -137,7 +140,10 @@ function checkAnswer() {
             }
         }
         moveCar();
-        progress.setAttribute("value", currentQuestionIndex + "");
+		if (currentQuestionIndex != 8){
+			progress.setAttribute("value", currentQuestionIndex + 1 + "");
+			progressNum.innerText = currentQuestionIndex + 1 + "/" + questions.length;
+		}
     }
 }
 
