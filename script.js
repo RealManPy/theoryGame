@@ -176,6 +176,10 @@ backButton.addEventListener("click", () => {
         displayQuestion();
         moveCar();
         progress.setAttribute("value", currentQuestionIndex + "");
+        const errorMessage = resultElement.querySelector("h1");
+        if (errorMessage) {
+            errorMessage.remove();
+        }
     }
 });
 
