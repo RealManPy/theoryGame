@@ -73,15 +73,15 @@ footer {
 
 #road {
     width: 80%;
-    height: 50px;
-    background-color: #c7c7c7; /* Gray road */
+    height: 26px;
+    background-color: #686F72; /* Gray road */
     position: relative;
     margin: 30px auto;
 }
 
 #car {
-    width: 50px;
-    height: 30px;
+    width: 48px;
+    height: 26px;
     position: absolute;
     left: 0;
     top: -10px; /* Adjust to align with the road */
